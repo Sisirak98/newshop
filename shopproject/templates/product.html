@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+    {
+        {{ Pro.des|truncatewords:155 }}
+{% endblock %}
+
+{% block title %}
+        {{pro.name}}
+{% endblock %}
+
+{% block content %}
+<center>
+<div>
+    <div>
+        <br><br>
+        <p><a href="{% url 'shopapp:allcat' %}">HOME</a>  <a href="{{pro.category.get_url}}">{{pro.category}}</a>  {{pro.name}} </p>
+    </div>
+</div>
+<div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div style="min-width:18rem;">
+            <img src="{{pro.img.url}}" alt="{{pro.name}}" class="my_img">
+        </div>
+    </div>
+    <div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <h1>{{pro.name}}</h1>
+            <p>{{pro.des}}</p>
+            <h4><b>${{pro.price}}</b></h4>
+            <p><b>Product Description-</b>{{pro.des}}</p>
+            <br>
+            {% if pro.stock <= 0 %}
+            <h2 style="color:red"><b>SORRY..Not available.</b></h2>
+            {% else %}
+          <h4 style="font-size:25px;">  <a href="{% url 'cartapp:add_cart' pro.id %}" class="btn btn-warning"><b>Add to Cart</b></a></h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br><br>
+</center>
+{% endblock %}

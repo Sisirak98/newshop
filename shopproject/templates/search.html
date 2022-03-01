@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+
+        Welcome to ANNEX Kitchen .... We have delicious dishes....Book it, pick it and lick it
+
+{% endblock %}
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+<div>
+  <p class="text-center my_search">Your result is here....<b>"{{query}}"</b></p>
+</div>
+ <div class="row mx-auto">
+                        {% for pro in products %}
+                            <div class="my_bottom_margin  col-sm-12 col-md-4 col-lg-4">
+
+                                <div class="card text-center my_card" style="min-width:16rem">
+                                    <div>
+<div>
+                                    <a href="{{pro.get_url}}"><img class="card-image-top my-image" src="{{pro.img.url}}" alt="{{pro.name}}"></a>
+                                    <div class="card-body">
+                                        <h2>{{pro.name}}</h2>
+                                        <h4>{{pro.price}}</h4>
+
+                                    </div>
+                                    </div>
+                                        </div>
+                                </div>
+
+                            </div>
+     {% empty %}
+     <div class="mx-auto">
+         <p class="text-center my_search">0 results Found</p>
+     </div>
+     {% endfor %}
+ </div>
+
+{% endblock %}
